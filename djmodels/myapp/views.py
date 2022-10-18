@@ -26,9 +26,13 @@ def user_create(request):
     else:
         form = UserForm()
 
-    return render(request,
+        return render(request,
             'myapp/user_create.html',
             {'form': form})
+
+
+
+
 
 def user_list(request):  # renommer la fonction de vue
    users = User.objects.all()

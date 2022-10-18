@@ -19,6 +19,7 @@ from myapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',views.hello),
     path('hello/',views.hello),
     path('user/add/', views.user_create, name='user-create'),
     path('users/', views.user_list, name='user-list'), 
