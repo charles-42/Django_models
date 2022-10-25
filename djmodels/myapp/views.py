@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from myapp.models import User
 
-from myapp.forms import UserForm
+from myapp.forms import UserForm, NameForm
 from django.shortcuts import redirect  
 
 
@@ -45,3 +45,27 @@ def user_detail(request, id):
   return render(request,
           'myapp/User_detail.html',
           {'user': user}) # nous mettons à jour cette ligne pour passer le groupe au gabarit
+
+
+def session(request):
+    if request.method == 'GET':
+        
+        form = NameForm()
+
+        if "your_name" in request.session:   
+            your_name = request.session["your_name"]
+        else:
+            your_name = "pas de nom enregistré" 
+
+        return render(request,
+            'myapp/session.html',
+            {'form': form,"your_name" : your_name})
+
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data["your_name"]:
+                request.session["your_name"] = form.cleaned_data["your_name"]
+            return redirect('session')
+        else:
+            print("formulaire non valide")

@@ -1,0 +1,12 @@
+<h1>Consulter les informations de sa session</h1>
+
+<ul>
+    <li> votre nom enregistré en session  : {{ your_name }} </li>
+   </ul>
+
+
+<form action="" method="post" novalidate>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Envoyer">
+</form>
