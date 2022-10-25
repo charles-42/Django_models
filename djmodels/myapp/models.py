@@ -9,3 +9,6 @@ class User(models.Model):
 
     def __str__(self):
         return self.name
+
+    def for_test_method_name_length(self):
+        return len(self.name)
